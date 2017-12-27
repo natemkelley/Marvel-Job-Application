@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <title>Marvel Universe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+
+    <!--angular code-->
+    <script src="javascripts/app.js"></script>
+
+    <!--auth-->
+    <script src="javascripts/auth.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <!-- Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyArZ0ujccFFbgC_EtPHLg95-CUVL3GmC8k",
+            authDomain: "marvelapp-40c28.firebaseapp.com",
+            databaseURL: "https://marvelapp-40c28.firebaseio.com",
+            projectId: "marvelapp-40c28",
+            storageBucket: "marvelapp-40c28.appspot.com",
+            messagingSenderId: "294162590742"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+
+    <!--header-->
+    <link href="stylesheets/header.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body ng-app="superhero" ng-controller="MainCtrl">
+    <div class="signin-page text-center">
+        <div>
+            <button class="btn btn-default btn-lg" id="Google-signin">Sign in with Google</button>
+            <button class="btn btn-default btn-lg" id="Github-signin">Sign in with GitHub</button>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                <img alt="Brand" height="30" src="images/spiderman-mask.png">Spiderman Rules
+                </a>
+            </div>
+            <div class="navbar-right">
+                <button class="btn btn-default navbar-btn" id="Signout" style="visibility: hidden">Signout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/fuOVd-6dAY8?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="ontopofheader">
+
+    </div>
+</body>
+
+</html>
+
+<!--
+    <div class=" custom-header">
+        <div class="text-center">
+            <h3>Share your favorite images!</h3>
+        </div>
+        <div class="text-center">
+            <form ng-submit="addSuperhero()" class="form-inline">
+                <div class="form-group">P
+                    <label for="url">URL:</label>
+                    <input type="text" class="url" id="url" name="url" ng-model="url" required>
+                </div>
+                <div class="form-group">
+                    <label for="caption">Caption:</label>
+                    <input type="text" class="caption" id="caption" name="caption" ng-model="caption" required maxlength="31">
+                </div>
+                <button type="submit" class="btn btn-success">Add Image</button>
+            </form>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 80px;">
+        <div class="row">
+            <div ng-repeat="superhero in superheroes | orderBy: ''">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="borders">
+                        <img ng-src="{{superhero.url}}" class="img-responsive img-rounded">
+                        <h4>{{superhero.caption}}</h4>
+                        <button type="submit" class="btn btn-danger btn-sm" ng-click="delete(superhero)">Delete Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->

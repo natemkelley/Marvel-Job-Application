@@ -1,0 +1,38 @@
+body {
+    font: 14px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.custom-header {
+    background-color: rgba(245, 245, 245, 0.56);
+    position: sticky;
+    top: 0;
+    margin: 0px 0 0px;
+    padding: 25px;
+    z-index: 99999;
+    border-bottom: 1px solid #bcbaba;
+}
+
+img {
+    max-height: 200px;
+
+}
+
+.borders {
+    border: 1px solid #cecdcd;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgba(245, 245, 245, 0.56);
+}
+
+.signin-page {
+    height: 100%;
+    width: 100%;
+    background-color: #ff6565;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
