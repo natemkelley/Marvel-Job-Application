@@ -5,4 +5,9 @@ var superheroSchema = new mongoose.Schema({
     caption: String
 });
 
-mongoose.model('Superheroes', superheroSchema);
+var villanSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+mongoose.model('Villians', villanSchema);

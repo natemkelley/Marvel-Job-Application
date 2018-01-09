@@ -1,0 +1,50 @@
+<div class="compareSuperheroes">
+    <!--Title-->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 style="margin: 10px 0px 20px 0px">Compare why Spider-man is the best!</h2>
+            <form ng-submit="getCharacter()" class="form-inline">
+                <div class="form-group">
+                    <label for="superhero">Superhero Name:</label>
+                    <input class="form-control" type="text" id="superhero" name="superhero" ng-model="superhero" placeholder="Iron Man">
+                </div>
+                <button type="submit" class="btn btn-success">Compare</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 30px">
+        <div class="col-md-5 col-md-offset-1 col-sm-6 col-sm-offset-0">
+            <div class="col-sm-5" id="spider-man">
+            </div>
+            <div class="col-sm-7">
+                <ul class="list-group">
+                    <li class="list-group-item " style="background-color: rgba(237, 237, 237, 0.68)">Basic Information</li>
+                    <li class="list-group-item text-right" id="spiName"><span class="pull-left"><strong >Name</strong></span> Spider-man</li>
+                    <li class="list-group-item text-right" id="spiNumStories"><span class="pull-left"><strong class="">Number of stories</strong></span> 0</li>
+                    <li class="list-group-item text-right" id="spiApp"><span class="pull-left"><strong class="">Comic book appearance</strong></span>0 </li>
+                    <li class="list-group-item" id="spiDesc"><span class="pull-left"><strong class="">Description</strong></span>. </li>
+
+                </ul>
+            </div>
+            <div class="col-sm-12"></div>
+        </div>
+        <div class="col-md-5 col-sm-6">
+            <div class="col-sm-5" id="opponent">
+
+            </div>
+            <div class="col-sm-7">
+                <ul class="list-group">
+                    <li class="list-group-item " style="background-color: rgba(237, 237, 237, 0.68)">Basic Information</li>
+                    <li class="list-group-item text-right" id="oppName"><span class="pull-left"><strong >Name</strong></span> Name</li>
+                    <li class="list-group-item text-right" id="oppNumStories"><span class="pull-left"><strong class="">Number of stories</strong></span> 0</li>
+                    <li class="list-group-item text-right" id="oppApp"><span class="pull-left"><strong class="">Comic book appearance</strong></span>0 </li>
+                    <li class="list-group-item" id="oppDesc"><span class="pull-left"><strong class="">Description</strong></span> .</li>
+
+                </ul>
+            </div>
+            <div class="col-sm-12"></div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="villians">
+    <!--Title-->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 style="margin: 10px 0px 20px 0px">Favorite Spider-Man Villians</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" id="villiansTable">
+            <form ng-submit="getCharacter()" class="form-inline">
+                <div class="form-group">
+                    <label for="superhero">Superhero Name:</label>
+                    <input class="form-control" type="text" id="superhero" name="superhero" ng-model="superhero" placeholder="Iron Man, Captain America, Rocket Raccoon, Lizard, Kraven the Hunter" style="min-width: 350px">
+                </div>
+                <button type="submit" class="btn btn-success">Compare</button>
+            </form>
+        </div>
+    </div>
+</div>

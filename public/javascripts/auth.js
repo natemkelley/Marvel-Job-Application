@@ -43,10 +43,14 @@ function signOut() {
     document.getElementById("Signout").style.visibility = "hidden";
 
     firebase.auth().signOut();
+    $('nav').fadeOut();
+    $('#body').fadeOut();
+
     $('.signin-page').fadeIn();
 }
 
 function initApp() {
+    console.log('init app')
     $('.signin-page').hide();
 
     firebase.auth().getRedirectResult().then(function (result) {
@@ -61,8 +65,7 @@ function initApp() {
             document.getElementById('Signout').style.display = 'visible';
         } else {
             console.log('no auth');
-            $('.signin-page').fadeIn();
-
+            $('.signin-page').show();
         }
     }).catch(function (error) {
         var errorCode = error.code;
@@ -80,7 +83,10 @@ function initApp() {
         if (user) {
             console.log('user');
             document.getElementById("Signout").style.visibility = "visible";
-            $('.signin-page').fadeOut();
+            document.getElementById("body").style.display = 'none';
+            $('.signin-page').hide();
+            $('#body').fadeIn();
+
             // User is signed in.
             var displayName = user.displayName;
             var email = user.email;
@@ -99,7 +105,6 @@ function initApp() {
     document.getElementById('Signout').addEventListener('click', signOut, false);
 
 }
-
 
 
 window.onload = function () {

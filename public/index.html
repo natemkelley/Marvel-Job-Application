@@ -3,12 +3,15 @@
 <head>
     <title>Marvel Universe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" href="images/favicon.png" type="image/gif" sizes="16x16">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+
+    <!--w3 include-->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 
     <!--angular code-->
     <script src="javascripts/app.js"></script>
@@ -16,7 +19,6 @@
     <!--auth-->
     <script src="javascripts/auth.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
-
     <!-- Firebase-->
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <script>
@@ -32,77 +34,156 @@
         firebase.initializeApp(config);
 
     </script>
-
-    <!--header-->
-    <link href="stylesheets/header.css" rel="stylesheet">
-
-
-
-
 </head>
 
-<body ng-app="superhero" ng-controller="MainCtrl">
+
+
+<body ng-app="superhero" ng-controller="MainCtrl" style="width: 100%">
     <div class="signin-page text-center">
         <div>
             <button class="btn btn-default btn-lg" id="Google-signin">Sign in with Google</button>
             <button class="btn btn-default btn-lg" id="Github-signin">Sign in with GitHub</button>
         </div>
     </div>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                <img alt="Brand" height="30" src="images/spiderman-mask.png">Spiderman Rules
+    <div id="body">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="description">
+                    <img alt="Brand" height="30" src="images/spiderman-mask.png">Spiderman
                 </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#history">Description</a></li>
+                    <li><a href="#why">Why Spider-Man</a></li>
+                    <li><a href="#villians">Villians</a></li>
+                    <li><a href="#compareSuperheroes">Compare Superheroes</a></li>
+                </ul>
+                <div class="navbar-right">
+                    <button class="btn btn-default navbar-btn" id="Signout" style="visibility: hidden">Signout!</button>
+                </div>
             </div>
-            <div class="navbar-right">
-                <button class="btn btn-default navbar-btn" id="Signout" style="visibility: hidden">Signout</button>
+        </nav>
+
+        <div class="video-background">
+            <div class="video-foreground">
+                <div id="player"></div>
             </div>
         </div>
-    </nav>
-
-    <div class="video-background">
-        <div class="video-foreground">
-            <iframe src="https://www.youtube.com/embed/fuOVd-6dAY8?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+        <div class="header-text">
+            <h1>Spiderman Rules</h1>
+            <h5>SCROLL DOWN TO FIND OUT WHY</h5>
         </div>
-    </div>
-    <div class="ontopofheader">
 
+        <div class="ontopofheader">
+            <div w3-include-html="description.html" id="history"></div>
+
+            <div class="villians" id="villians" style="padding-top:  50px;">
+                <!--Title-->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 style="margin: 10px 0px 20px 0px">Favorite Spider-Man Villians</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <form ng-submit="saveVillian()" class="form-inline">
+                            <div class="form-group">
+                                <label for="villian">Villian Name:</label>
+                                <input class="form-control" type="text" id="villianName" name="villianName" ng-model="villianName" placeholder="Doctor Octopus, Kingpin, Carnage" style="min-width: 350px">
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="col-md-8 col-md-offset-2">
+                        <div ng-repeat="villian in villians | orderBy: ''">
+                            <div id="{{villian._id}}" class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="borders">
+                                    <img ng-src="{{villian.image}}" class="img-responsive img-rounded">
+                                    <h4>{{villian.name}}</h4>
+                                    <button type="submit" class="btn btn-danger btn-sm" ng-click="delete(villian)">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description-->
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-6 col-md-offset-3 compHeroDesc">
+                        <p>The above demo uses the Marvel API and Angular. The data is first sent to Marvel and verified if a character by that name exists. The hero image and name are then sent to my Node.js server and stored in my database. On page load and data submission the name and image path are sent to the client. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="compareSuperheroes" id="compareSuperheroes">
+                <!--Title-->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 style="margin: 10px 0px 20px 0px">Compare why Spider-man is the best!</h2>
+                        <form ng-submit="getCharacter()" class="form-inline">
+                            <div class="form-group">
+                                <label for="superhero">Superhero Name:</label>
+                                <input class="form-control" type="text" id="superhero" name="superhero" ng-model="superhero" placeholder="Iron Man, Captain America, Rocket Raccoon, Lizard, Kraven the Hunter" style="min-width: 350px">
+                            </div>
+                            <button type="submit" class="btn btn-success">Compare</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 30px">
+                    <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0">
+                        <div class="col-sm-5" id="spider-man" style="padding: 0px">
+                        </div>
+                        <div class="col-sm-7" style="padding-right: 0px">
+                            <ul class="list-group">
+                                <li class="list-group-item " style="background-color: rgba(237, 237, 237, 0.68)">Basic Information</li>
+                                <li class="list-group-item text-right" id="spiName"></li>
+                                <li class="list-group-item text-right" id="spiNumStories"></li>
+                                <li class="list-group-item text-right" id="spiApp"></li>
+                                <li class="list-group-item" id="spiDesc"></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12"></div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="col-sm-7" style="padding-left: 0px">
+                            <ul class="list-group">
+                                <li class="list-group-item " style="background-color: rgba(237, 237, 237, 0.68)">Basic Information</li>
+                                <li class="list-group-item text-right" id="oppName"><span class="pull-left"><strong >Name</strong></span> Name</li>
+                                <li class="list-group-item text-right" id="oppNumStories"><span class="pull-left"><strong class="">Number of stories</strong></span> 0</li>
+                                <li class="list-group-item text-right" id="oppApp"><span class="pull-left"><strong class="">Comic book appearance</strong></span>0 </li>
+                                <li class="list-group-item" id="oppDesc"><span class="pull-left"><strong class="">Description</strong></span> .</li>
+
+                            </ul>
+                        </div>
+                        <div class="col-sm-5" id="opponent" style="padding: 0px">
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Description-->
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-6 col-md-offset-3 compHeroDesc">
+                        <p>The above demo uses the Marvel API and Node.JS to retrieve super hero information. The data is then appended to the page using jQuery and Angular. Try searching for some superheroes and you will see that Spider-man has way more stories and comic book appearances than any other superhero! He's awesome!</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div w3-include-html="footer.html" id="footer"></div>
+        </div>
     </div>
 </body>
 
 </html>
 
-<!--
-    <div class=" custom-header">
-        <div class="text-center">
-            <h3>Share your favorite images!</h3>
-        </div>
-        <div class="text-center">
-            <form ng-submit="addSuperhero()" class="form-inline">
-                <div class="form-group">P
-                    <label for="url">URL:</label>
-                    <input type="text" class="url" id="url" name="url" ng-model="url" required>
-                </div>
-                <div class="form-group">
-                    <label for="caption">Caption:</label>
-                    <input type="text" class="caption" id="caption" name="caption" ng-model="caption" required maxlength="31">
-                </div>
-                <button type="submit" class="btn btn-success">Add Image</button>
-            </form>
-        </div>
-    </div>
-    <div class="container" style="margin-top: 80px;">
-        <div class="row">
-            <div ng-repeat="superhero in superheroes | orderBy: ''">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="borders">
-                        <img ng-src="{{superhero.url}}" class="img-responsive img-rounded">
-                        <h4>{{superhero.caption}}</h4>
-                        <button type="submit" class="btn btn-danger btn-sm" ng-click="delete(superhero)">Delete Image</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+    document.getElementById("body").style.display = 'none';
+    w3.includeHTML();
+
+</script>
+<!--header-->
+<link href="stylesheets/header.css" rel="stylesheet">
+<script src="javascripts/header.js"></script>
